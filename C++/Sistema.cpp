@@ -48,6 +48,7 @@ void Sistema::run(std::string input, std::string output){
     if(file.is_open()){
         string line;
         while(getline(file, line)){
+            if(line[0] == '#') continue;
             vector<string> res = split(line, ',');
             p.push_back(new Word(sOpcode[res[0]], stoi(res[1]), stoi(res[2]), stoi(res[3])));
         }
