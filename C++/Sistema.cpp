@@ -33,7 +33,7 @@ std::vector<std::string> Sistema::split(std::string line, char c)
 
 void Sistema::run(std::string input, std::string output){
     using namespace std;
-    namespace fs = std::filesystem;
+    // namespace fs = std::filesystem;
     
     // if(output == " "){
     //     output = "./programs/out-";
