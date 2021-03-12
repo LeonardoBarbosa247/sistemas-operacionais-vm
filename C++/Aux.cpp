@@ -21,7 +21,7 @@ Aux::Aux(){
         {15, "SUB"}, // já implementada - Léo
         {16, "MULT"}, // já implementada - Diego
         {17, "LDI"}, // já implementada - Léo
-        {18, "LDD"},
+        {18, "LDD"}, // já implementada - Diego
         {19, "STD"}, // já implementada - Léo
         {20, "LDX"},
         {21, "STX"}, // já implementada - Léo
@@ -45,6 +45,22 @@ std::string Aux::dump(std::vector<Word*> m, int ini, int fim){
         ss << this->dump(m[i]);
     }
 
+    return ss.str();
+}
+
+std::string Aux::dump(std::vector<Word*> m)
+{
+    stringstream ss;
+    stringstream _ss;
+    int count = 0 ;
+    for(auto i : m){        
+        _ss << count++ << ": " << this->dump(i);
+        if(i->opc != ___)
+        {
+            ss << _ss.str();
+            _ss.str("");
+        }
+    }
     return ss.str();
 }
 

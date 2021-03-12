@@ -80,7 +80,10 @@ void Cpu::run(){
                 this->reg[this->ir->r1] = this->reg[this->ir->r1] * this->reg[this->ir->r2];
                 (this->pc)++;
                 break;
-
+            case LDD:
+                this->reg[this->ir->r1] = this->m[this->ir->p]->p;
+                (this->pc)++;
+                break;
             // <-- Antes do STOP
 
             case STOP:

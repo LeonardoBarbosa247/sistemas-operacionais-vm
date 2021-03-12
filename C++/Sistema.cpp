@@ -58,10 +58,12 @@ void Sistema::run(std::string input, std::string output){
     vm->cpu->setContext(0);
     stringstream ss;
     ss << "---------------------------------- programa carregado" << endl; 
-    ss << aux->dump(vm->m, 0, 15);
+    ss << aux->dump(vm->m);
+    // ss << aux->dump(vm->m, 0, 25);
     ss << "---------------------------------- após execucao " << endl;
     vm->cpu->run();
-    ss << aux->dump(vm->m, 0, 15);
+    ss << aux->dump(vm->m);
+    // ss << aux->dump(vm->m, 0, 25);
 
     if(output == " ") cout << ss.str();
     else{
