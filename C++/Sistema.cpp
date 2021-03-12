@@ -35,10 +35,10 @@ void Sistema::run(std::string input, std::string output){
     using namespace std;
     namespace fs = std::filesystem;
     
-    if(output == " "){
-        output = "./programs/out-";
-        output += fs::path(input).filename();
-    }
+    // if(output == " "){
+    //     output = "./programs/out-";
+    //     output += fs::path(input).filename();
+    // }
 
     Aux* aux = new Aux();
     vector<Word*> p;
@@ -47,20 +47,29 @@ void Sistema::run(std::string input, std::string output){
     file.open(input, ios::in);
     if(file.is_open()){
         string line;
-        cout << "aqui" << endl;
         while(getline(file, line)){
             vector<string> res = split(line, ',');
             p.push_back(new Word(sOpcode[res[0]], stoi(res[1]), stoi(res[2]), stoi(res[3])));
         }
     }
+    file.close();
 
     aux->carga(p, vm->m);
     vm->cpu->setContext(0);
-    cout << "---------------------------------- programa carregado" << endl; 
-    cout << aux->dump(vm->m, 0, 15);
-    cout << "---------------------------------- após execucao " << endl;
+    stringstream ss;
+    ss << "---------------------------------- programa carregado" << endl; 
+    ss << aux->dump(vm->m, 0, 15);
+    ss << "---------------------------------- após execucao " << endl;
     vm->cpu->run();
-    cout << aux->dump(vm->m, 0, 15);
+    ss << aux->dump(vm->m, 0, 15);
+
+    if(output == " ") cout << ss.str();
+    else{
+        fstream fsout;
+        fsout.open(output, ios::out);
+        fsout << ss.str();
+        fsout.close();
+    }
 }
 
 // void Sistema::test1(){
